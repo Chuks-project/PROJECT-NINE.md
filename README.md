@@ -1,6 +1,6 @@
 ## TOOLING WEBSITE DEPLOYMENT AUTOMATION WITH CONTINUOUS INTEGRATION. INTRODUCTION TO JENKINS
 
-In previous Project 8 we introduced horizontal scalability concept, which allow us to add new Web Servers to our Tooling Website and you have successfully deployed a set up with 2 Web Servers and also a Load Balancer to distribute traffic between them. It is not such a big task to manually configure two or three Web Servers. But imagine when you would need to repeat the same task over and over again adding dozens or even hundreds of servers.
+In previous Project 8 we introduced horizontal scalability concept, which allow us to add new Web Servers to our Tooling Website and having successfully deployed a set up with 2 Web Servers and also a Load Balancer to distribute traffic between them. It is not such a big task to manually configure two or three Web Servers. But imagine when you would need to repeat the same task over and over again adding dozens or even hundreds of servers.
 
 DevOps is about Agility, and speedy release of software and web solutions. One of the ways to guarantee fast and repeatable deployments is Automation of routine tasks.
 
@@ -95,9 +95,51 @@ Note that files resulted from a build are called "artifacts".
 ![new build console output](https://user-images.githubusercontent.com/65022146/199364595-6b940330-34a6-48da-b064-d47f52436e30.png)
 
 
-CONFIGURE JENKINS TO COPY FILES TO NFS SERVER VIA SSH
+
+## STEP 3: CONFIGURE JENKINS TO COPY FILES TO NFS SERVER VIA SSH 
+
+### Now we have our artifacts saved locally on Jenkins server, the next step is to copy them to our NFS server to /mnt/apps directory
+
+### Jenkins is a highly extendable application and there are 1400+ plugins available. We will need a plugin that is called "Publish Over SSH"
+
+- Install "Publish Over SSH" plugin
+
+- Configure the job/project to copy artifacts over to NFS server
+
+- Provide a private key (content of .pem file that you use to connect to NFS server via SSH/Putty)
+
+- Arbitrary name
+
+- Hostname – can be private IP address of your NFS server
+
+- Username – ec2-user (since NFS server is based on EC2 with RHEL 8)
+
+- Remote directory – /mnt/apps since our Web Servers use it as a mointing point to retrieve files from the NFS server
+
+- Test the configuration and make sure the connection returns Success. Remember, that TCP port 22 on NFS server must be open to receive SSH connections.
 
 
+![Publish over ssh successful](https://user-images.githubusercontent.com/65022146/199481019-29b9de80-d740-4a56-acb8-e8df825afdf6.png)
+![configure1](https://user-images.githubusercontent.com/65022146/199481068-0130e5cf-2db3-47c8-b585-ccbcfe4eac9b.png)
 
 
+### Save this configuration and go ahead, change something in README.MD file in your GitHub Tooling repository.
 
+- Webhook will trigger a new job and in the "Console Output" of the job you will find something like this:
+
+``        
+        SSH: Transferred 25 file(s)
+        Finished: SUCCESS
+``            
+
+- This is represented in much details as seen in the screenshot below:
+
+![Send over ssh successful](https://user-images.githubusercontent.com/65022146/199482407-0ddfb6ef-2bc2-46e7-938a-4d3594c9430f.png)
+
+- To make sure that the files in /mnt/apps have been udated – connect via SSH/Putty to your NFS server and check README.MD file
+
+    `cat /mnt/apps/README.md`
+    
+- If everything is configured successfully, you will see an image like the one below:
+
+![Cat README md successful](https://user-images.githubusercontent.com/65022146/199483043-cf1004bd-dcdc-46de-86dd-9ff892f5632e.png)
