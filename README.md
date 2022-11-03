@@ -14,26 +14,25 @@ Jenkins is an open source self contained automation server. We will be using Jen
 
 - Install JDK (since Jenkins is a Java-based application)
 
-
-``                                                                                                                                     `   
-    sudo apt update `                                                                                                                                       `
+```                                                                                                                                     `   
+     sudo apt update `                                                                                                                                       `
     
-    sudo apt install default-jdk-headless
-``
+     sudo apt install default-jdk-headless
+```
 
 - Install Jenkins
 
- ``                                                                                                                             
-    wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
-    sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > \
-    /etc/apt/sources.list.d/jenkins.list'
-    sudo apt update
-    sudo apt-get install jenkin
-``    
+ ```                                                                                                                             
+     wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+     sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > \
+     /etc/apt/sources.list.d/jenkins.list'
+     sudo apt update
+     sudo apt-get install jenkin
+```   
 
 - Make sure Jenkins is up and running
 
-  ``sudo systemctl status jenkins``                                                                                                   
+```sudo systemctl status jenkins```                                                                                                   
 
 ![Jenkins running ok](https://user-images.githubusercontent.com/65022146/199357103-7dd4fa54-3006-4c72-8da2-eab344409660.png)
 
@@ -56,7 +55,6 @@ Jenkins is an open source self contained automation server. We will be using Jen
 - Enable webhooks in your GitHub repository settings
 
 ![Webhook configured](https://user-images.githubusercontent.com/65022146/199359715-2c84a8fc-a417-4b8c-9f61-e5eee03558bf.png)
-
 
 
 - Go to Jenkins web console, click "New Item" and create a "Freestyle project"
@@ -145,5 +143,6 @@ Note that files resulted from a build are called "artifacts".
 ![Cat README md successful](https://user-images.githubusercontent.com/65022146/199483043-cf1004bd-dcdc-46de-86dd-9ff892f5632e.png)
     
     
-     
+ --------------------------------------------------------------------------------------------------------------------------------------------------------------------  
  ## END OF PROJECT NINE IMPLEMENTATION
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
