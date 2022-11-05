@@ -14,14 +14,13 @@ Jenkins is an open source self contained automation server. We will be using Jen
 
 - Install JDK (since Jenkins is a Java-based application)
 
-      `                                                                                                                                     `   
+     ` 
        sudo apt update                                                                                                                                      `
     
        sudo apt install default-jdk-headless
-    ```
+    `
 
-
-- Install Jenkins
+ - Install Jenkins
 
      ```                                                                                                                             
      wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
@@ -31,9 +30,9 @@ Jenkins is an open source self contained automation server. We will be using Jen
      sudo apt-get install jenkin
      ```   
 
--Make sure Jenkins is up and running
+- Make sure Jenkins is up and running
 
-`sudo systemctl status jenkins`                                                                                                   
+   `sudo systemctl status jenkins`                                                                                                   
 
 ![Jenkins running ok](https://user-images.githubusercontent.com/65022146/199357103-7dd4fa54-3006-4c72-8da2-eab344409660.png)
 
